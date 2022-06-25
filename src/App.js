@@ -24,6 +24,7 @@ class App extends React.Component {
     //auth.onAuthStateChanged return a function that is assigned to "unsubscribeFromAuth" properties of the class which is initially null
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
+        console.log(userAuth);
         const userRef = await createUserProfileDocument(userAuth);
 
         onSnapshot(userRef, (snapshot) => {
