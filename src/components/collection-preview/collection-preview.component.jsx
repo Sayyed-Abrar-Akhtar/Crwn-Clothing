@@ -10,8 +10,8 @@ const CollectionPreview = ({ title, items }) => (
       {/* Performance concern => Anonymous function calls inside any components do get called again and rerender brand new when this component render or rerender  */}
       {items
         .filter((item, idx) => idx < 4)
-        .map(({ id, ...otherItemProps }) => (
-          <CollectionItem key={id} {...otherItemProps} />
+        .map((item) => (
+          <CollectionItem key={item.id} item={item} />
         ))}
     </div>
   </div>
