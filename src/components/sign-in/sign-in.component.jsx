@@ -5,11 +5,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 
-import {
-  signInWithGoogle,
-  SignInWithEmailAndPassword,
-  auth,
-} from '../../firebase/firebase.utils';
+import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 
 import './sign-in.styles.scss';
 
