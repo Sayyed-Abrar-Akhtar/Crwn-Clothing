@@ -9,35 +9,37 @@ import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import CartIcon from '../cart-icon/cart-icon.component';
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionDiv,
+  OptionLink,
+  OptionsContainer,
+} from './header.styles';
 
 import './header.styles.scss';
 const Header = ({ currentUser, hidden }) => (
-  <div className='header'>
-    <Link to='/'>
+  <HeaderContainer>
+    <LogoContainer to='/'>
       <Logo className='logo' />
-    </Link>
-    <div className='options'>
-      <Link className='option' to='/shop'>
-        shop
-      </Link>
+    </LogoContainer>
+    <OptionsContainer>
+      <OptionLink to='/shop'>shop</OptionLink>
 
-      <Link className='option' to='/contact'>
-        contact
-      </Link>
+      <OptionLink to='/contact'>contact</OptionLink>
 
       {currentUser ? (
-        <div className='option' onClick={() => auth.signOut()}>
+        // <OptionDiv onClick={() => auth.signOut()}>Sign out</OptionDiv>
+        <OptionLink as='div' onClick={() => auth.signOut()}>
           Sign out
-        </div>
+        </OptionLink>
       ) : (
-        <Link className='option' to='/signin'>
-          signin
-        </Link>
+        <OptionLink to='/signin'>signin</OptionLink>
       )}
       <CartIcon />
-    </div>
+    </OptionsContainer>
     {!hidden && <CartDropdown />}
-  </div>
+  </HeaderContainer>
 );
 
 // const mapStateToProps = (state) => ({
