@@ -18,6 +18,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+
 import CheckoutPage from './components/checkout/checkout.component';
 
 class App extends React.Component {
