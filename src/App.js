@@ -2,9 +2,6 @@ import React from 'react';
 
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { onSnapshot } from 'firebase/firestore';
-
 import { connect } from 'react-redux';
 
 import { createStructuredSelector } from 'reselect';
@@ -25,26 +22,24 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
+    //const { setCurrentUser } = this.props;
     //auth.onAuthStateChanged return a function that is assigned to "unsubscribeFromAuth" properties of the class which is initially null
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        onSnapshot(userRef, (snapshot) => {
-          setCurrentUser({ id: snapshot.id, ...snapshot.data() });
-        });
-      } else {
-        setCurrentUser(userAuth);
-      }
-    });
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
+    //     onSnapshot(userRef, (snapshot) => {
+    //       setCurrentUser({ id: snapshot.id, ...snapshot.data() });
+    //     });
+    //   } else {
+    //     setCurrentUser(userAuth);
+    //   }
+    // });
   }
 
   componentWillUnmount() {
     // when the function that was returned earlier is called will unsubscribe
     // so this way it prevents memory leaks
-    this.unsubscribeFromAuth();
+    // this.unsubscribeFromAuth();
   }
 
   render() {
@@ -77,8 +72,8 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

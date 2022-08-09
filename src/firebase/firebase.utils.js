@@ -27,8 +27,6 @@ export const auth = getAuth();
 
 export const db = getFirestore(app);
 
-const provider = new GoogleAuthProvider();
-
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
@@ -54,9 +52,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const googleProvider = new GoogleAuthProvider();
+
 //Sign In with Google
 export const signInWithGoogle = () =>
-  signInWithPopup(auth, provider)
+  signInWithPopup(auth, googleProvider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       GoogleAuthProvider.credentialFromResult(result);
