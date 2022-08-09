@@ -15,7 +15,6 @@ import {
   googleProvider,
 } from '../../firebase/firebase.utils';
 import {
-  checkUserSession,
   signInFailure,
   signInSucess,
   signOutFailure,
