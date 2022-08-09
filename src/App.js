@@ -13,15 +13,18 @@ import SignInAndSignUpPage from './components/sign-in-and-sign-up/sign-in-and-si
 
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
-import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 import CheckoutPage from './components/checkout/checkout.component';
+import { checkUserSession } from './redux/user/user.actions';
 
 class App extends React.Component {
-  unsubscribeFromAuth = null;
+  // unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession();
+
     //const { setCurrentUser } = this.props;
     //auth.onAuthStateChanged return a function that is assigned to "unsubscribeFromAuth" properties of the class which is initially null
     // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -72,8 +75,8 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: (user) => dispatch(checkUserSession()),
+});
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
